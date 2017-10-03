@@ -2,13 +2,13 @@ package sample;
 
 import java.util.ArrayList;
 
-class Criterio1 implements Criterio_interface {
+class Criterio3 implements Criterio_interface {
     private ArrayList<Ficha> ordem = new ArrayList<Ficha>(){
         {
             add(new Ficha("NRE"));
-            add(new Ficha("NRE"));
-            add(new Ficha("NRE"));
-            add(new Ficha("NFE"));
+            add(new Ficha("PRE"));
+            add(new Ficha("PRE"));
+            add(new Ficha("PFE"));
         }
     } ;
 
@@ -17,7 +17,7 @@ class Criterio1 implements Criterio_interface {
     private int pivo;
 
 
-    public Criterio1(ArrayList<Ficha> fichas /*ArrayList<Ficha> ordem*/){
+    public Criterio3(ArrayList<Ficha> fichas /*ArrayList<Ficha> ordem*/){
         //this.ordem = ordem;
         this.fichas = fichas;
         this.pivo = 0;
@@ -28,11 +28,11 @@ class Criterio1 implements Criterio_interface {
         for (int i = pivo; i < ordem.size(); i++) {
             for (Ficha atual : fichas) {
                 if (atual.getTipo().equals(ordem.get(i).getTipo())) {
-                    fichas.remove(atual);
                     pivo++;
                     if (pivo >= ordem.size()) {
                         pivo = 0;
                     }
+                    fichas.remove(atual);
                     return atual;
                 }
             }

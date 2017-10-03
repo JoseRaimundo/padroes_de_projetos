@@ -1,6 +1,5 @@
 package sample;
 
-public interface Criterio_interface {
-    default void Puxar() {
-    }
+interface Criterio_interface {
+    Ficha Puxar();
 }
