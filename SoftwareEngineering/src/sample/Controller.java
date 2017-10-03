@@ -1,16 +1,23 @@
 package sample;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Controller {
-    int count_nre = 0, count_pfe = 0, count_pre = 0, count_nfe = 0;
-    ArrayList<Ficha> fichas = new ArrayList<>();
-    Criterio_interface criterio;
+
+
+
+    private int count_nre = 0, count_pfe = 0, count_pre = 0, count_nfe = 0;
+    private ArrayList<Ficha> fichas = new ArrayList<>();
+    private CriterioInterface criterio;
+
+    public Controller(){
+        criterio = new CriterioDefault(fichas);
+    }
+
 
     public void setCriterio(int tipo) {
         if(tipo == 0){
-            this.criterio = new Criterio_default(fichas);
+            this.criterio = new CriterioDefault(fichas);
         }else if(tipo == 1){
             this.criterio = new Criterio1(fichas);
         }else if(tipo == 2){
@@ -42,12 +49,13 @@ public class Controller {
         fichas.add(ficha_temp);
     }
 
+
     public Ficha proximaFicha(){
-        Ficha atual = criterio.Puxar();
+        Ficha atual = criterio.puxarFicha();
         if(atual == null){
             System.out.println("Mundança automática de crítério: Defalt");
            setCriterio(0);
-           atual = criterio.Puxar();
+           atual = criterio.puxarFicha();
         }
         return atual;
     }

@@ -2,7 +2,7 @@ package sample;
 
 import java.util.ArrayList;
 
-class Criterio4 implements Criterio_interface {
+class Criterio4 implements CriterioInterface {
     private ArrayList<Ficha> ordem = new ArrayList<Ficha>(){
         {
             add(new Ficha("PRE"));
@@ -22,7 +22,7 @@ class Criterio4 implements Criterio_interface {
     }
 
     @Override
-    public Ficha Puxar() {
+    public Ficha puxarFicha() {
         for (int i = pivo; i < ordem.size(); i++) {
             for (Ficha atual : fichas) {
                 if (atual.getTipo().equals(ordem.get(i).getTipo())) {
