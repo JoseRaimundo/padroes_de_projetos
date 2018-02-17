@@ -1,6 +1,7 @@
 
 # Padrões de projetos
 Este tutorial apresenta uma serie de conceitos e práticas sobre os padrões de projetos, para isso será contextualizado alguns conceitos básicos de Programação Orientada Objeto (POO), e em seguida serão abordados os principais padrões de criação, estrutural e comportamentais.
+A seção de Padrões de Projetos apresenta exemplos e explicações adaptadas de várias fontes, principalmente do sites do [Marcos Brizeno](https://brizeno.wordpress.com/padroes/) e do [Source Making](https://sourcemaking.com/design_patterns). 
 
 
 ## Programação Orientada Objeto: Introdução
@@ -63,11 +64,18 @@ Um método pode ou não receber um **parâmetro**, um parâmetro é um atributo 
 
 ### Funções*
 
+### Enumeração
+
 ### Visibilidade
 
 ### Interfaces
 
+### Composição
 ### Herança
+
+
+## Princípios SOLID
+
 
 
 ## Padrões de Projetos
@@ -75,13 +83,74 @@ Um método pode ou não receber um **parâmetro**, um parâmetro é um atributo 
 
 ###  Padrões de Projetos: Criacionais
 #### Abstract Factory
+#### Factory Method
+O objetivo do Factory Method é **"Definir uma interface para criar um objeto, mas deixar as subclasses decidirem que classe instanciar. O Factory Method permite adiar a instanciação para subclasses."**[5 colocar_link]. 
+
+Imagine que temos que construir um sistema para nossa loja de bolos para gerenciar os nosso produtos e fornecedores, e que atualmente temos três fornecedores especializados em tipos de bolos diferentes. Exemplo: 
+
+|Fornecedor|Bolo |
+|--|--|
+|João Bolos|Bolo de Ovo|
+|Recanto da vovô | Bolo de Nata|
+|Sabor nordestino|Bolo Baeta|
+
+Para facilitar o exemplo, vamos criar um interface para dar apoio para nossos produtos (bolos). E nessa interface, iremos criar apenas um método que escreve na tela a descrição do bolo.
+
+	public interface Bolo{
+		void descricao();
+	}
+
+Agora que temos nossa informação e a representação (interface) da nossa classe bolo, vamos direto ao ponto. Como foi visto anteriormente, o **Factory Method** define uma interface (ou uma classe abstrata, caso as subclasses precisem de mais recursos [4 colocar_link]) que possibilita **adiar a instanciação**.  Para isso, precisaremos criar uma interface que será usada pelos responsáveis pela criação do produto.
+
+Interface do fornecedor de bolo.
+
+    public interface FornecedorDeBolo{
+	    Bolo criaBolo();
+    }
+Exemplo de produto/classe concreta (nosso bolo)
+
+	public class BoloDeNata implements Bolo{
+		@Override
+		void descricao(){
+			System.out.print("Bolo de nata da Vovó");
+		}
+	}
+ Exemplo de fornecedor, note que fornecedor carrega a responsabilidade de criar o seu respectivo produto (bolo).
+ 
+	public class RecantoDaVovo implements ForncedorDeBolo{
+		@Override
+		public Bolo criaBolo(){
+			return new BoloDeNata();
+		}
+	}
+Classe de teste com o método main
+
+	public static void main(String[] args){
+		FornecedorDeBolo vovo = new RecantoDaVovo();
+		Bolo bolo = vovo.criaBolo();
+	}
+
+Com essa abordagem, temos os seguintes:
+
+ - Pontos positivos
+ -- Aumenta a facilidade para inserção novos produtos sem necessitar alterar o código da aplicação.
+ -- Segue o principio da responsabilidade única.
+ - Pontos negativos
+ -- Requer a criação de muitas estruturas.
 
 ###  Padrões de Projetos: Estruturais
 
 ###  Padrões de Projetos: Comportamentais
 
+## Exercícios
+
+
 
 ## Referências
-[1] https://www.caelum.com.br/apostila-java-orientacao-objetos/orientacao-a-objetos-basica/
-[2] https://sourcemaking.com/design_patterns
-[2] https://www.devmedia.com.br/introducao-a-programacao-orientada-a-objetos-em-java/26452
+[1]https://www.caelum.com.br/apostila-java-orientacao-objetos/orientacao-a-objetos-basica/
+[2]https://sourcemaking.com/design_patterns
+[3]https://www.devmedia.com.br/introducao-a-programacao-orientada-a-objetos-em-java/26452
+[4]https://brizeno.wordpress.com/2011/09/17/mao-na-massa-factory-method/
+[5]GAMMA, Erich et al. Padrões de Projeto: Soluções reutilizáveis de software orientado a objetos.
+[6]https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)
+
