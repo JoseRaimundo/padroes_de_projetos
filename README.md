@@ -1,13 +1,18 @@
-
 # Padrões de projetos
 Este tutorial apresenta uma serie de conceitos e práticas sobre os padrões de projetos, para isso será contextualizado alguns conceitos básicos de Programação Orientada Objeto (POO), e em seguida serão abordados os principais padrões de criação, estrutural e comportamentais.
 A seção de Padrões de Projetos apresenta exemplos e explicações adaptadas de várias fontes, principalmente do sites do [Marcos Brizeno](https://brizeno.wordpress.com/padroes/) e do [Source Making](https://sourcemaking.com/design_patterns). 
+
+# Sumário
+
+- [Programação Orientada Objeto: Introdução](#Programação-Orientada-Objeto:-Introdução)
+	- [Abstração](#Abstração)
+
+
 
 
 ## Programação Orientada Objeto: Introdução
 Nesta secção, serão apresentados os conceitos básicos de POO, estes conceitos são fundamentais para o entendimento do restante do tutorial, porém se você já é familiarizado com POO, então pode ir direto para a secção de [Padrões de Projetos](#Padrões-de-Projetos).
 > **Atenção:** Para este tutorial, foi utilizado a linguagem de programação Java, com o ambiente de desenvolvimento Eclipse.
-
 
 ### Abstração
 
@@ -83,9 +88,9 @@ Um método pode ou não receber um **parâmetro**, um parâmetro é um atributo 
 > **Atenção:** Os exemplos utilizados neste tutorial são exemplos apresentados como exercícios para o curso de Sistemas Para Internet, no Instituto Federal da Paraíba, há possibilidades de conter alguns erros, caso encontre, basta entrar em contato ou você mesmo consertar via Git.
 
 ###  Padrões de Projetos: Criacionais
-#### Abstract Factory
+
 #### Factory Method
-O objetivo do Factory Method é **"Definir uma interface para criar um objeto, mas deixar as subclasses decidirem que classe instanciar. O Factory Method permite adiar a instanciação para subclasses."**[5 colocar_link]. 
+O objetivo do Factory Method é **"Definir uma interface para criar um objeto, mas deixar as subclasses decidirem que classe instanciar. O Factory Method permite adiar a instanciação para subclasses."**[[5]](#Referências). 
 
 Imagine que temos que construir um sistema para nossa loja de bolos para gerenciar os nosso produtos e fornecedores, e que atualmente temos três fornecedores especializados em tipos de bolos diferentes. Exemplo: 
 
@@ -95,13 +100,14 @@ Imagine que temos que construir um sistema para nossa loja de bolos para gerenci
 |Recanto da vovô | Bolo de Nata|
 |Sabor nordestino|Bolo Baeta|
 
+
 Para facilitar o exemplo, vamos criar um interface para dar apoio para nossos produtos (bolos). E nessa interface, iremos criar apenas um método que escreve na tela a descrição do bolo.
 
 	public interface Bolo{
 		void descricao();
 	}
 
-Agora que temos nossa informação e a representação (interface) da nossa classe bolo, vamos direto ao ponto. Como foi visto anteriormente, o **Factory Method** define uma interface (ou uma classe abstrata, caso as subclasses precisem de mais recursos [4 colocar_link]) que possibilita **adiar a instanciação**.  Para isso, precisaremos criar uma interface que será usada pelos responsáveis pela criação do produto.
+Agora que temos nossa informação e a representação (interface) da nossa classe bolo, vamos direto ao ponto. Como foi visto anteriormente, o **Factory Method** define uma interface (ou uma classe abstrata, caso as subclasses precisem de mais recursos [[4]](#Referências) que possibilita **adiar a instanciação**.  Para isso, precisaremos criar uma interface que será usada pelos responsáveis pela criação do produto.
 
 Interface do fornecedor de bolo.
 
@@ -138,6 +144,61 @@ Com essa abordagem, temos os seguintes:
  -- Segue o principio da responsabilidade única.
  - Pontos negativos
  -- Requer a criação de muitas estruturas.
+
+#### Abstract Factory
+Com o Abstract Factory, é buscado **"fornecer um interface para criação de famílias de objetos relacionados ou dependentes sem especificar suas classes concretas"**[[4]](#Referências). Em outras palavras, o Abstract Factory é utilizado para criar grupos de objetos que possuem algum relacionamento. Vamos ao exemplo:
+
+|Fornecedor|Bolo |Tipo|
+|--|--|--|
+|João Bolos|Bolo de Ovo|Normal
+|Sabor nordestino|Bolo Baeta|Normal
+|Sabor nordestino|Bolo de Cenoura|Diet
+|Recanto da vovô | Bolo de Nata|Normal
+|Recanto da vovô|Bolo de aveia|Diet
+
+Note que agora, além dos bolos tradicionais, também há bolos feitos com receitas diets, note também que um fornecedor pode fornecer mais de um bolo (logo, os bolos que pertence a um fornecedor especifico, passam a fazer parte de um grupo/família).  Um abordagem convencional seria criar uma classe para cada bolo (ou utilizando Factory Method), mas como saber a qual agrupamento que um determinado objeto (bolo) pertence? Ao fornecer uma interface para criar os grupos de objetos, o Abstract Factory resolve este problema permitindo a criação de um ramo em comum na hierarquia, o que possibilita a identificação de um grupo de objetos.
+
+Interface com a criação de famílias de objetos.
+
+	public interface FornecedorDeBolo{
+		public BoloDiet criaBoloDiet();
+		public BoloNormal criaBoloNormal();
+	}
+Exemplo de fornecedor criando seus vários produtos.
+
+	public class RecantoDaVovo implements FornecedorDeBolo{
+		public BoloDiet criaBoloDiet(){
+			return new BoloDeAveia();
+		}
+		public BoloNormal criaBoloNormal(){
+			return new BoloDeNata();
+		}
+	}
+Exemplo de interface para padronização da criação de produtos (bolos).
+
+	public interface BoloNormal(){
+		public void descricaoNormal();
+	}
+
+	public interface BoloDiet(){
+		public void descricaoDiet();
+	}
+Exemplo de produto do grupo de bolos normais (bolo).
+
+	public class BoloDeNata implements BoloNormal{
+		@override 
+		public void descricaoNormal(){
+			System.out.println("Bolo de nata da vovó, bolo normal!");
+		}
+	}
+Exemplo de produto do grupo de bolos diet (bolo).
+
+	public class BoloDeAveia implements BoloDiet{
+		@override 
+		public void descricaoDiet(){
+			System.out.println("Bolo de aveia da vovó, bolo diet!");
+		}
+	}
 
 ###  Padrões de Projetos: Estruturais
 
