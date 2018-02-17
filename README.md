@@ -36,6 +36,7 @@ Agora que sabemos a estrutura básica da nossa classe, falta adicionar as caract
 	}
 
 Os atributos, como foi dito anteriormente, correspondem as características da nossa classe, na nossa abstração para o exemplo, o bolo contem apenas três atributos, mas em uma situação real (ou dependendo da sua abstração), poderia haver vários e mais complexos (incluindo outras classes). Os atributos podem ser do  diversos tipos, na tabela a seguir é apresentado deles. 
+
 | Tipo | Descrição | Exemplos|
 |--|--|--|
 |int  | Valor inteiro | 1 , 2 , 2018|
