@@ -230,7 +230,7 @@ Para esse exemplo, suponhamos que agora o nosso produto é um pouco mais complex
 
 
 |Fornecedor|Bolo |Massa|Cobertura|Recheio|
-|--|--|--|--|--|--|
+|--|--|--|--|--|
 |Sabor nordestino|Bolo de Ovo	 |Normal|Brigadeiro| Chocolate | 
 |Recanto da vovô |Bolo de Cenoura|Diet	|Coco 	| Morango |
 
@@ -342,10 +342,10 @@ Com essa abordagem, temos os seguintes:
 
 ## Referências
 
-[1]https://www.caelum.com.br/apostila-java-orientacao-objetos/orientacao-a-objetos-basica/
-[2]https://sourcemaking.com/design_patterns
-[3]https://www.devmedia.com.br/introducao-a-programacao-orientada-a-objetos-em-java/26452
-[4]https://brizeno.wordpress.com/2011/09/17/mao-na-massa-factory-method/
-[5]GAMMA, Erich et al. Padrões de Projeto: Soluções reutilizáveis de software orientado a objetos.
-[6]https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)
+[1]https://www.caelum.com.br/apostila-java-orientacao-objetos/orientacao-a-objetos-basica/<br />
+[2]https://sourcemaking.com/design_patterns<br />
+[3]https://www.devmedia.com.br/introducao-a-programacao-orientada-a-objetos-em-java/26452<br />
+[4]https://brizeno.wordpress.com/2011/09/17/mao-na-massa-factory-method/<br />
+[5]GAMMA, Erich et al. Padrões de Projeto: Soluções reutilizáveis de software orientado a objetos.<br />
+[6]https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)<br />
 
