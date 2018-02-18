@@ -1,17 +1,20 @@
-# Padrões de projetos
+# Programação Orientada Objetos e Padrões de projetos
 Este tutorial apresenta uma serie de conceitos e práticas sobre os padrões de projetos, para isso será contextualizado alguns conceitos básicos de Programação Orientada Objeto (POO), e em seguida serão abordados os principais padrões de criação, estrutural e comportamentais.
 A seção de Padrões de Projetos apresenta exemplos e explicações adaptadas de várias fontes, principalmente do sites do [Marcos Brizeno](https://brizeno.wordpress.com/padroes/) e do [Source Making](https://sourcemaking.com/design_patterns). 
 
 # Sumário
 
-- [Programação Orientada Objeto: Introdução](#Programação-Orientada-Objeto:-Introdução)
-	- [Abstração](#Abstração)
-
-
+- [Programação Orientada Objeto: Introdução](#programação-orientada-objeto:-introdução)
+	- [Abstração](#abstração)
+	- 
+- [Padrões de Projetos](#padr%C3%B5es-de-projetos-1)
+	- [Factory Method](#factory-method)
+	- [Abstract Factory](#abstract-factory)
+	- [Builder](#builder)
 
 
 ## Programação Orientada Objeto: Introdução
-Nesta secção, serão apresentados os conceitos básicos de POO, estes conceitos são fundamentais para o entendimento do restante do tutorial, porém se você já é familiarizado com POO, então pode ir direto para a secção de [Padrões de Projetos](#Padrões-de-Projetos).
+Nesta secção, serão apresentados os conceitos básicos de POO, estes conceitos são fundamentais para o entendimento do restante do tutorial, porém se você já é familiarizado com POO, então pode ir direto para a secção de [Padrões de Projetos](#padrões-de-projetos).
 > **Atenção:** Para este tutorial, foi utilizado a linguagem de programação Java, com o ambiente de desenvolvimento Eclipse.
 
 ### Abstração
@@ -20,7 +23,7 @@ Para definirmos bem as funcionalidades de nossos programas, é necessário reali
 
 ### Classes
 
-As **classes** são projetos de um **objetos**, na qual encontramos as características e comportamentos que os objetos terão. Uma analogia: Imagine uma classe como uma receita de bolo simples em teremos apenas a recheio, cobertura e tempo ao forno, todas as propriedades necessárias para fazer nosso bolo estão presentes, ou seja, independente se o bolo será de cobertura de chattily ou morango, massa comum ou de chocolate, sabemos que ele terá um massa, uma cobertura e o tempo ao forno. Em Java, uma classe é formada pelo seguinte comando.
+As **classes** são projetos de um **objetos**, na qual encontramos as características e comportamentos que os objetos terão. Uma analogia: Imagine uma classe como uma receita de bolo simples em que teremos apenas a massa, cobertura e recheio, todas as propriedades necessárias para fazer nosso bolo estão presentes, ou seja, independente se o bolo será de cobertura de chattily ou morango, massa comum ou de chocolate, sabemos que ele terá uma massa, uma cobertura e um recheio. Em Java, uma classe é formada pelo seguinte comando.
 
 			class MeuBolo{
 				//corpo da minha class
@@ -31,13 +34,13 @@ As **classes** são projetos de um **objetos**, na qual encontramos as caracter�
 Tudo o que estiver dentro das chaves 
 
 ### Atributos
-Agora que sabemos a estrutura básica da nossa classe, falta adicionar as características dela, para isso utilizamos os **atributos**. No código do bolo apresentado anteriormente, foi mostrado apenas a estrutura básica da classe (me Java), porém não foi apresentado nenhuma das suas características como o massa, cobertura e tempo ao forno. O código para representar um atributo em Java, é formado por um modificador de acesso (veremos isso mais adiante), o tipo do atributo e o nome, conforme o código a seguir: 
+Agora que sabemos a estrutura básica da nossa classe, falta adicionar as características dela, para isso utilizamos os **atributos**. No código do bolo apresentado anteriormente, foi mostrado apenas a estrutura básica da classe (me Java), porém não foi apresentado nenhuma das suas características como o massa, cobertura e recheio. O código para representar um atributo em Java, é formado por um modificador de acesso (veremos isso mais adiante), o tipo do atributo e o nome, conforme o código a seguir: 
 
 	class MeuBolo{
 			//modificador tipo nome
 			public String massa;
 			public String cobertura;
-			public int tempo_forno;
+			public String recheio;
 	}
 
 Os atributos, como foi dito anteriormente, correspondem as características da nossa classe, na nossa abstração para o exemplo, o bolo contem apenas três atributos, mas em uma situação real (ou dependendo da sua abstração), poderia haver vários e mais complexos (incluindo outras classes). Os atributos podem ser do  diversos tipos, na tabela a seguir é apresentado deles. 
@@ -79,6 +82,8 @@ Um método pode ou não receber um **parâmetro**, um parâmetro é um atributo 
 ### Composição
 ### Herança
 
+### Construtor
+
 
 ## Princípios SOLID
 
@@ -90,7 +95,7 @@ Um método pode ou não receber um **parâmetro**, um parâmetro é um atributo 
 ###  Padrões de Projetos: Criacionais
 
 #### Factory Method
-O objetivo do Factory Method é **"Definir uma interface para criar um objeto, mas deixar as subclasses decidirem que classe instanciar. O Factory Method permite adiar a instanciação para subclasses."**[[5]](#Referências). 
+O objetivo do Factory Method é **"Definir uma interface para criar um objeto, mas deixar as subclasses decidirem que classe instanciar. O Factory Method permite adiar a instanciação para subclasses."**[[5]](#referências). 
 
 Imagine que temos que construir um sistema para nossa loja de bolos para gerenciar os nosso produtos e fornecedores, e que atualmente temos três fornecedores especializados em tipos de bolos diferentes. Exemplo: 
 
@@ -146,11 +151,10 @@ Com essa abordagem, temos os seguintes:
  -- Requer a criação de muitas estruturas.
 
 #### Abstract Factory
-Com o Abstract Factory, é buscado **"fornecer um interface para criação de famílias de objetos relacionados ou dependentes sem especificar suas classes concretas"**[[4]](#Referências). Em outras palavras, o Abstract Factory é utilizado para criar grupos de objetos que possuem algum relacionamento. Vamos ao exemplo:
+Com o Abstract Factory, é buscado **"fornecer um interface para criação de famílias de objetos relacionados ou dependentes sem especificar suas classes concretas"**[[4]](#referências). Em outras palavras, o Abstract Factory é utilizado para criar grupos de objetos que possuem algum relacionamento. Vamos ao exemplo:
 
-|Fornecedor|Bolo |Tipo|
+|Fornecedor|Bolo |Tipo da massa|
 |--|--|--|
-|João Bolos|Bolo de Ovo|Normal
 |Sabor nordestino|Bolo Baeta|Normal
 |Sabor nordestino|Bolo de Cenoura|Diet
 |Recanto da vovô | Bolo de Nata|Normal
@@ -174,7 +178,7 @@ Exemplo de fornecedor criando seus vários produtos.
 			return new BoloDeNata();
 		}
 	}
-Exemplo de interface para padronização da criação de produtos (bolos).
+Exemplo de interface para padronização da criação de produtos (bolos). Note que o Abstract Factory é bastante semelhante ao Factory Method, apenas com uma pequena particularidade. Essa sensação de repetição de padrão é comum.
 
 	public interface BoloNormal(){
 		public void descricaoNormal();
@@ -199,6 +203,134 @@ Exemplo de produto do grupo de bolos diet (bolo).
 			System.out.println("Bolo de aveia da vovó, bolo diet!");
 		}
 	}
+Agora chamaremos nossa classe de teste. No que com essa abordagem, conseguirmos amarrar um grupo de objetos (bolos) ao seu ramo em comum (neste caso, o fornecedor).
+
+	public static void main(String[] args) {
+		FornecedorDeBolo fornecedor = new RecantoDaVovo();
+		fornecedor = new RecantoDaVovo();
+		BoloDiet bolo_diet = fornecedor.criaBoloDiet();
+		BoloNormal bolo_normal = fornecedor.criaBoloNormal();
+		bolo_diet.descricaoBoloDiet();
+		bolo_normal.descricaoBolNormal();
+	}
+
+Com essa abordagem, temos os seguintes:
+
+ - Pontos positivos
+ -- A classe responsável pelo uso da nossa Abstract Factory fica dependente de uma interface simples e pequena.
+ -- Segue o principio da segregação de interface.
+ - Pontos negativos
+ -- Requer a criação de muitas estruturas.
+
+#### Builder
+
+O padrão Builder visa **“Separar a construção de um objeto complexo de sua representação de modo que o mesmo processo de construção possa criar diferentes representações.”[[4]](#refer%C3%AAncias)**. Com esse padrão, a construção do objeto é separada em vários métodos que realizam o trabalho pesado e devolvem um objeto complexo pronto para ser usado.
+
+Para esse exemplo, suponhamos que agora o nosso produto é um pouco mais complexo.
+
+
+|Fornecedor|Bolo |Massa|Cobertura|Recheio|
+|--|--|--|--|--|--|
+|Sabor nordestino|Bolo de Ovo	 |Normal|Brigadeiro| Chocolate | 
+|Recanto da vovô |Bolo de Cenoura|Diet	|Coco 	| Morango |
+
+Para isso, vamos criar uma estrutura de bolo diferente.
+
+	public class Bolo{
+		private String nome;
+		private String massa;
+		private String recheio;
+		private String cobertura;
+		//aqui vai o construtor padrão, os get e set e toString
+	}
+
+Nossa classe builder terá um método para construir cada dado no nosso produto (bolo), aqui teremos um objeto bolo que será reaproveitado/construído pelas subclasses por meio dos métodos abstratos.
+
+	public abstract class BoloBuilder{
+		protected Bolo bolo;
+		public BoloBuilder(){
+			bolo = new Bolo();
+		}
+		public abstract void builderNome();
+		public abstract void builderMassa();
+		public abstract void builderRecheio();
+		public abstract void builderCobertura();
+		
+		public Bolo getBolo(){
+			return this.bolo;
+		}
+	}
+Exemplo de classe Builder concreta:
+
+	public class RecantoDaVovo extends BoloBuilder{
+		@override
+		public void builderNome(){
+			this.bolo.setNome("Bolo de Cenoura");
+		}
+		
+		@override
+		public void builderMassa(){
+			this.bolo.setMassa("Diet");
+		}
+		
+		@override
+		public void builderRecheio(){
+			this.bolo.setRecheio("Morango");
+		}
+		
+		@override
+		public void builderCobertura(){
+			this.bolo.setCobertura("Coco");
+		}
+	}
+
+
+Note que dentro de cada método poderia haver **operações mais complexas**, como por exemplo, buscar informações em um banco de dados, realizar cálculos matemáticos complexos, criação de outros objetos e etc.
+
+Agora que criamos nosso builder e um exemplo de classe concreta, precisamos criar a classe responsável gerenciar a construção do nosso objeto, esta classe recebe no seu construtor um objeto do tipo BoloBuilder (ou seja, ConstrutorDirector pode manipular qualquer classe que herda  de BoloBuilder).
+
+	public classe ConstrutorDirector{
+		private BoloBuilder fornecedor;
+		public ConstrutorBidrector(BoloBuilder fornecedor){
+			this.fornecedor = fornecedor; 
+		}
+
+		public void construirBolo(){
+			this.fornecedor.builderNome();
+			this.fornecedor.builderMassa();
+			this.fornecedor.builderRecheio();
+			this.fornecedor.builderCobertura();
+		}
+
+		public Bolo getBolo(){
+			return this.fornecedor.getBolo();
+		}
+	}
+
+Agora criaremos nossa classe para testar.
+
+	public static void main(String[] agrs){
+		BoloBuilder fornecedor = new RecantoDaVovo();
+		ConstrutorDirector construtor = new ConstrutorDirector(fornecedor);
+		construtor.construirBolo();
+		Bolo bolo = construtor.getBolo();
+		System.out.println(bolo);
+	}
+
+Note que agora nossa classe de teste vai lidar **apenas com o código do construtor** e note também que para criar um novo objeto só precisamos utilizar um novo builder (atribuindo-o para o objeto fornecedor).
+
+Com essa abordagem, temos os seguintes:
+
+ - Pontos positivos
+ -- Encobre a construção de um objeto, deixando um código mais enxuto para quem vai usar.
+ -- Separa a construção de um objeto complexo em parte menores.
+ - Pontos negativos
+ -- Não há o conceito de famílias de produtos como no Abstract Factory.
+
+
+
+
+
 
 ###  Padrões de Projetos: Estruturais
 
@@ -209,6 +341,7 @@ Exemplo de produto do grupo de bolos diet (bolo).
 
 
 ## Referências
+
 [1]https://www.caelum.com.br/apostila-java-orientacao-objetos/orientacao-a-objetos-basica/
 [2]https://sourcemaking.com/design_patterns
 [3]https://www.devmedia.com.br/introducao-a-programacao-orientada-a-objetos-em-java/26452
