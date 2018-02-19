@@ -68,6 +68,9 @@ Um método pode ou não receber um **parâmetro**, um parâmetro é um atributo 
 
  e pode ter ou não um retorno, caso não tenha o local do tipo deve conter o termo **void**.
 
+ - Boas práticas
+	 - Como um método remete a um comportamente, é recomendado usar verbos no infinitivo para nomear-los, por exemplo: calcularValor, descreverBolo, copiarTexto e etc. 
+
 ### Objetos
 
 
@@ -109,7 +112,7 @@ Imagine que temos que construir um sistema para nossa loja de bolos para gerenci
 Para facilitar o exemplo, vamos criar um interface para dar apoio para nossos produtos (bolos). E nessa interface, iremos criar apenas um método que escreve na tela a descrição do bolo.
 
 	public interface Bolo{
-		void descricao();
+		void descreverBolo();
 	}
 
 Agora que temos nossa informação e a representação (interface) da nossa classe bolo, vamos direto ao ponto. Como foi visto anteriormente, o **Factory Method** define uma interface (ou uma classe abstrata, caso as subclasses precisem de mais recursos [[4]](#Referências) que possibilita **adiar a instanciação**.  Para isso, precisaremos criar uma interface que será usada pelos responsáveis pela criação do produto.
@@ -123,7 +126,7 @@ Exemplo de produto/classe concreta (nosso bolo)
 
 	public class BoloDeNata implements Bolo{
 		@Override
-		void descricao(){
+		void descreverBolo(){
 			System.out.print("Bolo de nata da Vovó");
 		}
 	}
@@ -181,17 +184,17 @@ Exemplo de fornecedor criando seus vários produtos.
 Exemplo de interface para padronização da criação de produtos (bolos). Note que o Abstract Factory é bastante semelhante ao Factory Method, apenas com uma pequena particularidade. Essa sensação de repetição de padrão é comum.
 
 	public interface BoloNormal(){
-		public void descricaoNormal();
+		public void descreverBoloNormal();
 	}
 
 	public interface BoloDiet(){
-		public void descricaoDiet();
+		public void descreverBoloDiet();
 	}
 Exemplo de produto do grupo de bolos normais (bolo).
 
 	public class BoloDeNata implements BoloNormal{
 		@override 
-		public void descricaoNormal(){
+		public void descreverBoloNormal(){
 			System.out.println("Bolo de nata da vovó, bolo normal!");
 		}
 	}
@@ -199,7 +202,7 @@ Exemplo de produto do grupo de bolos diet (bolo).
 
 	public class BoloDeAveia implements BoloDiet{
 		@override 
-		public void descricaoDiet(){
+		public void descreverBoloDiet(){
 			System.out.println("Bolo de aveia da vovó, bolo diet!");
 		}
 	}
@@ -210,8 +213,8 @@ Agora chamaremos nossa classe de teste. No que com essa abordagem, conseguirmos 
 		fornecedor = new RecantoDaVovo();
 		BoloDiet bolo_diet = fornecedor.criaBoloDiet();
 		BoloNormal bolo_normal = fornecedor.criaBoloNormal();
-		bolo_diet.descricaoBoloDiet();
-		bolo_normal.descricaoBolNormal();
+		bolo_diet.descreverBoloDiet();
+		bolo_normal.descreverBoloNormal();
 	}
 
 Com essa abordagem, temos os seguintes:
@@ -327,8 +330,53 @@ Com essa abordagem, temos os seguintes:
  - Pontos negativos
  -- Não há o conceito de famílias de produtos como no Abstract Factory.
 
+#### Prototype
+O Prototype **“Especificar tipos de objetos a serem criados usando uma instância protótipo e criar novos objetos pela cópia desse protótipo.”[[4]](#refer%C3%AAncias)**. Em outras palavras, esse padrão utiliza uma classe "esqueleto" para criar um clone completo. 
 
 
+|Bolo |Tipo da massa|
+|--|--|
+|Bolo Baeta|Normal
+|Bolo de Cenoura|Diet
+|Bolo de Nata|Normal
+
+
+Primeiro criamos nosso esqueleto (**protótipo**) de classe, note que é uma classe abstrata com poucas implementações completa.
+
+	public abstract class BoloPrototype{
+		protected String tipo_massa;
+		public abstract descreverBolo();
+		public abstract clonarBolo();
+		public void setTipoMassa(String tipo_massa){
+			this.tipo_massa = tipo_massa;
+		}
+	
+		public String getTipoMassa(){
+			return this.tipo_massa;
+		}
+	}
+
+
+Agora criaremos a classe concreta
+
+	public class BoloBaeta extends BoloPrototype{
+		protected BoloBaeta(BoloBaeta bolo_baeta){
+			this.tipo_massa = bolo_baeta.getTipoMassa();
+		}
+		
+		public BoloBaeta(){
+			tipo_massa = "Diet";
+		}
+		
+		@Override
+		public String descreverBolo(){
+			return "Bolo baeta com massa " + getTipoMassa();
+		}
+		@Override 
+		public BoloPrototype clonarBolo(){
+			return new BoloBaeta(this);
+		}
+	}
 
 
 
