@@ -6,14 +6,29 @@ A seção de Padrões de Projetos apresenta exemplos e explicações adaptadas d
 
 - [Programação Orientada Objeto: Introdução](#programação-orientada-objeto:-introdução)
 	- [Abstração](#abstração)
-	- 
-- [Padrões de Projetos](#padr%C3%B5es-de-projetos-1)
+	- [Classes](#classes)
+	- [Atributos](#atributos)
+	- [Construtor](#construtor)
+	- [Métodos](#métodos)
+	- [Visibilidade](#visibilidade)
+	- [Enumeração](#enumeração)
+	- [Composição](#composição)
+	- [Interfaces](#interfaces)
+	- [Herança](#herança)
+
+- [Princípios SOLID](#princípios-solid)
+- [Padrões de Projetos](#padrões-de-projetos)
+	- [Padrões de Projetos: Criacionais](#padrões-de-projetos:-criacionais)
 	- [Factory Method](#factory-method)
 	- [Abstract Factory](#abstract-factory)
+	- [Prototype](#prototype)
+	- [Singleton](#singleton)
 	- [Builder](#builder)
 
 
+
 ## Programação Orientada Objeto: Introdução
+
 Nesta secção, serão apresentados os conceitos básicos de POO, estes conceitos são fundamentais para o entendimento do restante do tutorial, porém se você já é familiarizado com POO, então pode ir direto para a secção de [Padrões de Projetos](#padrões-de-projetos).
 > **Atenção:** Para este tutorial, foi utilizado a linguagem de programação Java, com o ambiente de desenvolvimento Eclipse.
 
@@ -34,6 +49,7 @@ As **classes** são projetos de um **objetos**, na qual encontramos as caracter�
 Tudo o que estiver dentro das chaves 
 
 ### Atributos
+
 Agora que sabemos a estrutura básica da nossa classe, falta adicionar as características dela, para isso utilizamos os **atributos**. No código do bolo apresentado anteriormente, foi mostrado apenas a estrutura básica da classe (me Java), porém não foi apresentado nenhuma das suas características como o massa, cobertura e recheio. O código para representar um atributo em Java, é formado por um modificador de acesso (veremos isso mais adiante), o tipo do atributo e o nome, conforme o código a seguir: 
 
 	class MeuBolo{
@@ -56,7 +72,11 @@ Os atributos, como foi dito anteriormente, correspondem as características da n
 
 Há outros tipos, porém ficaremos apenas com estes para não confundir. Outra coisa importante sobre os tipos, é que eles podem ser primitivos ou não-primitivos (ou também chamados de compostos), em Java os tipos primitivos iniciam com a primeira letra minuscula, enquanto os tipos não-primitivos iniciam com letra maiúscula. Os tipos primitivos são os componentes básicos (atômicos) das classes, eles correspondem a um espaço de memória com tamanho fixo destinado para armazenar o valor que é atribuído a ele. Enquanto os tipos não-primitivos são compostos por outros atributos, um exemplo de tipo não-primitivo é o String, que contem próprios atributos (conjunto de caracteres do tipo char) e  também carrega seus próprios comportamentos (**métodos**).
 
+
+### Construtor
+
 ### Métodos 
+
 Os métodos correspondem ao comportamento da nossa classe. A estrutura básica de um métodos possui um modificador de acesso (veremos isso mais tarde), um tipo de retorno, o nome do método e os parâmetros.
 
 	//modificador retorno nome(parametros){bloco de código}
@@ -71,21 +91,16 @@ Um método pode ou não receber um **parâmetro**, um parâmetro é um atributo 
  - Boas práticas
 	 - Como um método remete a um comportamente, é recomendado usar verbos no infinitivo para nomear-los, por exemplo: calcularValor, descreverBolo, copiarTexto e etc. 
 
-### Objetos
-
-
-### Funções*
-
-### Enumeração
 
 ### Visibilidade
 
-### Interfaces
+### Enumeração
 
 ### Composição
-### Herança
 
-### Construtor
+### Interfaces
+
+### Herança
 
 
 ## Princípios SOLID
