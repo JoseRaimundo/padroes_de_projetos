@@ -171,12 +171,12 @@ Com essa abordagem, temos os seguintes:
 #### Abstract Factory
 Com o Abstract Factory, é buscado **"fornecer um interface para criação de famílias de objetos relacionados ou dependentes sem especificar suas classes concretas"**[[4]](#referências). Em outras palavras, o Abstract Factory é utilizado para criar grupos de objetos que possuem algum relacionamento. Vamos ao exemplo:
 
-|Fornecedor|Bolo |Tipo da massa|
+| Fornecedor | Bolo | Tipo da massa |
 |--|--|--|
-|Sabor nordestino|Bolo Baeta|Normal
-|Sabor nordestino|Bolo de Cenoura|Diet
-|Recanto da vovô | Bolo de Nata|Normal
-|Recanto da vovô|Bolo de aveia|Diet
+| Sabor nordestino| Bolo Baeta | Normal
+| Sabor nordestino| Bolo de Cenoura | Diet
+| Recanto da vovô | Bolo de Nata | Normal
+| Recanto da vovô | Bolo de aveia | Diet
 
 Note que agora, além dos bolos tradicionais, também há bolos feitos com receitas diets, note também que um fornecedor pode fornecer mais de um bolo (logo, os bolos que pertence a um fornecedor especifico, passam a fazer parte de um grupo/família).  Um abordagem convencional seria criar uma classe para cada bolo (ou utilizando Factory Method), mas como saber a qual agrupamento que um determinado objeto (bolo) pertence? Ao fornecer uma interface para criar os grupos de objetos, o Abstract Factory resolve este problema permitindo a criação de um ramo em comum na hierarquia, o que possibilita a identificação de um grupo de objetos.
 
