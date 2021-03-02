@@ -1,3 +1,4 @@
+
 # Programação Orientada Objetos e Padrões de projetos
 Este tutorial apresenta uma serie de conceitos e práticas sobre os padrões de projetos, para isso será contextualizado alguns conceitos básicos de Programação Orientada Objeto (POO), e em seguida serão abordados os principais padrões de criação, estrutural e comportamentais.
 A seção de Padrões de Projetos apresenta exemplos e explicações adaptadas de várias fontes, principalmente do sites do [Marcos Brizeno](https://brizeno.wordpress.com/padroes/) e do [Source Making](https://sourcemaking.com/design_patterns). 
@@ -40,9 +41,9 @@ Para definirmos bem as funcionalidades de nossos programas, é necessário reali
 
 As **classes** são projetos de um **objetos**, na qual encontramos as características e comportamentos que os objetos terão. Uma analogia: Imagine uma classe como uma receita de bolo simples em que teremos apenas a massa, cobertura e recheio, todas as propriedades necessárias para fazer nosso bolo estão presentes, ou seja, independente se o bolo será de cobertura de chattily ou morango, massa comum ou de chocolate, sabemos que ele terá uma massa, uma cobertura e um recheio. Em Java, uma classe é formada pelo seguinte comando.
 
-			class MeuBolo{
-				//corpo da minha class
-			}
+	class MeuBolo{
+		//corpo da minha class
+	}
 
 > **Boa Pratica:** Para melhorar a legibilidade do seu código, é recomendado utilizar nomes intuitivos para suas classes, e também utilizar as letras maiúsculas para destacar o inicio de palavras no nome da classes, por exemplo: ExemploDeClasse.
 
@@ -53,17 +54,20 @@ Tudo o que estiver dentro das chaves
 Agora que sabemos a estrutura básica da nossa classe, falta adicionar as características dela, para isso utilizamos os **atributos**. No código do bolo apresentado anteriormente, foi mostrado apenas a estrutura básica da classe (me Java), porém não foi apresentado nenhuma das suas características como o massa, cobertura e recheio. O código para representar um atributo em Java, é formado por um modificador de acesso (veremos isso mais adiante), o tipo do atributo e o nome, conforme o código a seguir: 
 
 	class MeuBolo{
-			//modificador tipo nome
-			public String massa;
-			public String cobertura;
-			public String recheio;
+		//modificador tipo nome
+		public String massa;
+		public String cobertura;
+		public String recheio;
 	}
 
-Os atributos, como foi dito anteriormente, correspondem as características da nossa classe, na nossa abstração para o exemplo, o bolo contem apenas três atributos, mas em uma situação real (ou dependendo da sua abstração), poderia haver vários e mais complexos (incluindo outras classes). Os atributos podem ser do  diversos tipos, na tabela a seguir é apresentado deles. 
+Os atributos, como foi dito anteriormente, correspondem as características da nossa classe, na nossa abstração para o exemplo, o bolo contem apenas três atributos, mas em uma situação real (ou dependendo da sua abstração), poderia haver vários e mais complexos (incluindo outras classes). Em Java e muitas outras linguagens de programação chamadas de "**tipadas**", os atributos possuem tipos específicos que devem ser associados ao tipo do dado ao qual o atributo está representando. 
+
 
 | Tipo | Descrição | Exemplos|
 |--|--|--|
-|int  | Valor inteiro | 1 , 2 , 2018|
+|byte  | Valor pequeno (com tamanho de 8 bits)| de -127 a 127 |
+|int  | Valor inteiro (com tamanho de 32 bits)| 1 , -2 , 2018|
+|long  | Valor inteiro (com tamanho de 64 bits)| -1 , 2 , -132113 |
 |float  | Valor real (com tamanho de 32 bits) |  1.38, 3.14 , 0.0001|
 |double | Valor real (com tamanho de 64 bits)  |  1 , 2, 2018|
 |char  | Caractere (números,letras ou especias) |'a' , '%' , '1'|
@@ -88,11 +92,87 @@ Um método pode ou não receber um **parâmetro**, um parâmetro é um atributo 
 
  e pode ter ou não um retorno, caso não tenha o local do tipo deve conter o termo **void**.
 
- - Boas práticas
-	 - Como um método remete a um comportamente, é recomendado usar verbos no infinitivo para nomear-los, por exemplo: calcularValor, descreverBolo, copiarTexto e etc. 
+> **Boas práticas**: Como um método remete a um comportamente, é recomendado usar verbos no infinitivo para nomear-los, por exemplo: calcularValor, descreverBolo, copiarTexto e etc.
 
 
-### Visibilidade
+### Visibilidade (Modificadores de acesso)
+
+Por motivos de segurança, as vezes é preciso restringir a "visualização" de um método ou atributo de uma classe em relação à outras classes. 
+
+> **Exemplo**: Imagine que você criou um método que valida a senha de um usuário, e este método é utilizado apenas na classe ContaUsuario, logo ao utilizar um modificador de acesso private, você pode manter o acesso desse método apenas interno da classe em que ele está ou pode liberar para ser usada sempre que a classe for instanciada usando o modificador public.
+
+
+Para definir a visibilidade de atributos e métodos, na maioria das linguagens, exitem palavras-chaves que definem o escopo de acesso. São elas:
+
+| Modificador | Descrição |
+|--|--|
+| public  | acesso liberado para todos que tem acesso à classe (o modificador mais liberado) |
+| private | acesso exclusivo apenas para a classe (o modificador mais rigoroso) |
+| protected | acesso para as classes do mesmo pacote ou por meio de herança |
+| default | acesso para as classes do mesmo pacote |
+
+ Para ser usado em atributos ou métodos, deve ser usado da 
+seguinte forma: 
+	
+	//Exemplo do modificador private em um atributo
+    private String nome = "José Raimundo";
+	
+	// Exemplo do modificador public em um método
+	public String getNome(){
+		return nome;
+	}
+
+#### Abstract
+
+Modificador abstract: usado em métodos e classes, a classe que o usa não pode ser instanciada e a presença de um método abstrato implica que a classe deve ser abstrata também. Este modificador é usado quando o método ainda não está implementado, normalmente quando você tem apenas uma ideia ou esboço de como será a classe/método, bastante comum em classes pai que possuem métodos que ainda não foram implementadas, sendo necessário a implementação nas classes filhas. 
+
+Exemplo: Note que na classe **Bolo** eu não sei ainda o tipo da **cobertura** que o bolo irá ter, então eu crio um método abstrato que irá conter apenas a ideia de como o método irá se comportar, em seguida eu passo a tarefa da implementação para os filhos.
+
+    public abstract class Bolo{
+		public abstract String cobertura();
+	}
+
+A classe filha implementa o métodos abstratos do pai.
+
+	public class BoloChocolate exends Bolo{
+		// .... construtor
+		@Override
+		public String cobertura(){
+			return "Cobertura de chocolate";
+		}
+	}
+
+Com essa abordagem, eu consigo padronizar minhas várias classes filhas carregando um método com a mesma nomenclature da classe pai.
+
+#### Static
+
+Quando um variável é criada utilizando o modificador static, significa que o valor daquela variável será o mesmo em todas as instâncias do objeto que a carrega, e se em alguma delas for modificada o valor será modificado em todas. 
+
+Por exemplo, observe o valor do atributo **nome**.
+
+	public class Bolo {  
+		public static String nome = "teste";  
+		public Bolo(){ }  
+	}
+
+No código a seguir, note que ao modificar o valor de **nome** na instância **b2**, o valor de **nome** em **b1** também é modificado.
+
+	public class main {  
+		public static void main(String[] args) {  
+			Bolo b1 = new Bolo();
+			System.out.println(b1.nome);  
+			//saída: "teste"
+			Bolo b2 = new Bolo();  
+			b2.nome = "Chocolate";  
+			System.out.println(b1.nome);  
+			// saída: "Chocolate"
+			System.out.println(b2.nome);  
+			// saída: "Chocolate"
+		}  
+	}
+
+Este comportamento é constantemente utilizado em aplicações que utilizam o padrão de projeto singleton (veremos mais a frente), pois garante que um valor seja compartilhado por diversos módulos do mesmo projeto, evitando conflitos ou a necessidade de atualizar diversas instâncias da mesma classe.
+
 
 ### Enumeração
 
@@ -411,4 +491,3 @@ Agora criaremos a classe concreta
 [4]https://brizeno.wordpress.com/2011/09/17/mao-na-massa-factory-method/<br />
 [5]GAMMA, Erich et al. Padrões de Projeto: Soluções reutilizáveis de software orientado a objetos.<br />
 [6]https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)<br />
-
