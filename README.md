@@ -31,36 +31,53 @@ A seção de Padrões de Projetos apresenta exemplos e explicações adaptadas d
 ## Programação Orientada Objeto: Introdução
 
 Nesta secção, serão apresentados os conceitos básicos de POO, estes conceitos são fundamentais para o entendimento do restante do tutorial, porém se você já é familiarizado com POO, então pode ir direto para a secção de [Padrões de Projetos](#padrões-de-projetos).
-> **Atenção:** Para este tutorial, foi utilizado a linguagem de programação Java, com o ambiente de desenvolvimento Eclipse.
+> **Atenção:** Para este tutorial, foi utilizado a linguagem de programação Java, com o ambiente de desenvolvimento [InteliJ](https://www.jetbrains.com/pt-br/idea/).
 
 ### Abstração
 
-Para definirmos bem as funcionalidades de nossos programas, é necessário realizar a abstração do mundo que nossa aplicação irá abranger, por exemplo: Imagine que você irá fazer um sistema simples que calcula a massa corporal ideal de uma pessoa, para essa aplicação serão necessárias informações como idade, altura e peso atual, logo, informações como cor do cabelo, gosto musical, CPF e etc, não serão necessários. Dominar o conceito de abstração é algo importante, pois permite ao desenvolvedor formular um cenário mais enxuto e sem distrações.
+Para definirmos bem as funcionalidades de nossos programas, é necessário realizar a abstração do mundo que nossa aplicação irá abranger, por exemplo: Imagine que você irá fazer um sistema simples que calcula a massa corporal de uma pessoa, para essa aplicação serão necessárias abstrair uma especie de objeto no qual você irá trabalhar e que conterá informações como idade, altura e peso atual. Neste objeto, informações como cor do cabelo, gosto musical, CPF e etc, não serão necessários, pois não terão utilidade para sua aplicação. Este processo de mapeamento de informações uteis em um elemento (objeto) coerente com a aplicação se chama de **abstração**. Dominar o conceito de abstração é algo importante, pois permite ao desenvolvedor formular um cenário mais enxuto e sem distrações.
 
 ### Classes
 
-As **classes** são projetos de um **objetos**, na qual encontramos as características e comportamentos que os objetos terão. Uma analogia: Imagine uma classe como uma receita de bolo simples em que teremos apenas a massa, cobertura e recheio, todas as propriedades necessárias para fazer nosso bolo estão presentes, ou seja, independente se o bolo será de cobertura de chattily ou morango, massa comum ou de chocolate, sabemos que ele terá uma massa, uma cobertura e um recheio. Em Java, uma classe é formada pelo seguinte comando.
+As **classes** são projetos de um **objetos**, na qual encontramos as características e comportamentos que os objetos terão. Analogia: Imagine uma classe como uma receita de bolo em que teremos a massa, cobertura e recheio, todas as propriedades necessárias para fazer nosso bolo estão presentes, ou seja, independente se o bolo será de cobertura de chattily ou morango, massa comum ou de chocolate, sabemos que ele terá uma massa, uma cobertura e um recheio. No contexto da orientação objetos, o bolo feito a partir da nossa receita é um objeto concreto (que já existe), ou seja, quanto nossa receita contem as informações de como nosso bolo deve ser feito, nosso bolo contem as informações do bolo propriamente dito.
+
+| Ex. de Classe | Ex. de Objeto |
+|--|--|
+| Receita (cobertura, massa) | Bolo (Chocolate, Massa comum) |
+| Carro (marca, ano) | Gol(Volkswagen, 2015) |
+| Funcionário (nome, salário)| Gerente(Paulo, R$ 7000,00) |
+
+
+Em Java, uma classe é formada pelo seguinte comando.
 
 	class MeuBolo{
-		//corpo da minha class
+		//corpo da classe
 	}
+	
+E um objeto (boloDeChocolate) gerado a partir da classe (MeuBolo) em Java é:
+
+	MeuBolo boloDeChocolate = new MeuBolo();
 
 > **Boa Pratica:** Para melhorar a legibilidade do seu código, é recomendado utilizar nomes intuitivos para suas classes, e também utilizar as letras maiúsculas para destacar o inicio de palavras no nome da classes, por exemplo: ExemploDeClasse.
 
-Tudo o que estiver dentro das chaves 
+
 
 ### Atributos
 
-Agora que sabemos a estrutura básica da nossa classe, falta adicionar as características dela, para isso utilizamos os **atributos**. No código do bolo apresentado anteriormente, foi mostrado apenas a estrutura básica da classe (me Java), porém não foi apresentado nenhuma das suas características como o massa, cobertura e recheio. O código para representar um atributo em Java, é formado por um modificador de acesso (veremos isso mais adiante), o tipo do atributo e o nome, conforme o código a seguir: 
+Agora que sabemos o conceito básico de nossa classe, falta adicionar as características dela, também chamadas de **atributos** no contexto da orientação objetos. No código do bolo apresentado anteriormente, foi mostrado apenas a estrutura básica da classe (em Java), porém não foi apresentado nenhuma das suas características, tais como o massa, cobertura e recheio. Como virmos na seção sobre **abstração**, estes componentes são muito importantes, pois descrevem virtualmente o que queremos mapear do problema real. 
+
+O código para representar um atributo em Java, é formado pelo tipo do atributo e o nome, conforme o código a seguir: 
 
 	class MeuBolo{
-		//modificador tipo nome
-		public String massa;
-		public String cobertura;
-		public String recheio;
+		//tipo nome
+		String massa;
+		String recheio;
+		String cobertura;
 	}
 
-Os atributos, como foi dito anteriormente, correspondem as características da nossa classe, na nossa abstração para o exemplo, o bolo contem apenas três atributos, mas em uma situação real (ou dependendo da sua abstração), poderia haver vários e mais complexos (incluindo outras classes). Em Java e muitas outras linguagens de programação chamadas de "**tipadas**", os atributos possuem tipos específicos que devem ser associados ao tipo do dado ao qual o atributo está representando. 
+Os atributos, como foi dito anteriormente, correspondem as características da nossa classe, na nossa abstração para o exemplo, o bolo contem apenas três atributos, mas em uma situação real (ou dependendo da sua abstração), poderia haver vários e mais complexos (incluindo outras classes). 
+
+Em Java e muitas outras linguagens de programação chamadas de "**tipadas**", os atributos possuem tipos específicos que devem ser associados ao tipo do dado ao qual o atributo está representando. 
 
 
 | Tipo | Descrição | Exemplos|
@@ -71,11 +88,10 @@ Os atributos, como foi dito anteriormente, correspondem as características da n
 |float  | Valor real (com tamanho de 32 bits) |  1.38, 3.14 , 0.0001|
 |double | Valor real (com tamanho de 64 bits)  |  1 , 2, 2018|
 |char  | Caractere (números,letras ou especias) |'a' , '%' , '1'|
-|String  | Palavras, frases e demais conjuntos de caracteres |  "José" , "Java" , "meu bolo!"|
+|String  | Palavras, frases e demais conjuntos de caracteres |  "Massa comum" , "Java" , "Chocolate"|
 
 
-Há outros tipos, porém ficaremos apenas com estes para não confundir. Outra coisa importante sobre os tipos, é que eles podem ser primitivos ou não-primitivos (ou também chamados de compostos), em Java os tipos primitivos iniciam com a primeira letra minuscula, enquanto os tipos não-primitivos iniciam com letra maiúscula. Os tipos primitivos são os componentes básicos (atômicos) das classes, eles correspondem a um espaço de memória com tamanho fixo destinado para armazenar o valor que é atribuído a ele. Enquanto os tipos não-primitivos são compostos por outros atributos, um exemplo de tipo não-primitivo é o String, que contem próprios atributos (conjunto de caracteres do tipo char) e  também carrega seus próprios comportamentos (**métodos**).
-
+Há outros tipos, porém ficaremos apenas com estes para não confundir. Outra coisa importante sobre os tipos, é que eles podem ser primitivos ou não-primitivos (ou também chamados de compostos), em Java os tipos primitivos iniciam com a primeira letra minuscula, enquanto os tipos não-primitivos iniciam com letra maiúscula. Os tipos primitivos são os componentes básicos (atômicos) das classes, eles correspondem a um espaço de memória com tamanho fixo destinado para armazenar o valor que é atribuído a ele. Enquanto os tipos não-primitivos são compostos por outros atributos, um exemplo de tipo não-primitivo é o String, que contem próprios atributos (conjunto de caracteres do tipo char (letras)) e  também carrega seus próprios comportamentos (**métodos**) que veremos mais a frente.
 
 ### Construtor
 
@@ -95,11 +111,11 @@ Um método pode ou não receber um **parâmetro**, um parâmetro é um atributo 
 > **Boas práticas**: Como um método remete a um comportamente, é recomendado usar verbos no infinitivo para nomear-los, por exemplo: calcularValor, descreverBolo, copiarTexto e etc.
 
 
-### Visibilidade (Modificadores de acesso)
+### Modificadores de acesso
 
 Por motivos de segurança, as vezes é preciso restringir a "visualização" de um método ou atributo de uma classe em relação à outras classes. 
 
-> **Exemplo**: Imagine que você criou um método que valida a senha de um usuário, e este método é utilizado apenas na classe ContaUsuario, logo ao utilizar um modificador de acesso private, você pode manter o acesso desse método apenas interno da classe em que ele está ou pode liberar para ser usada sempre que a classe for instanciada usando o modificador public.
+> **Exemplo**: Imagine que você criou um método que valida a senha de um usuário, e este método é utilizado apenas na classe ContaUsuario, logo ao utilizar um modificador de acesso, você pode, por exemplo, manter o acesso desse método apenas interno da classe em que ele está ou pode liberar para ser usada em qualquer outro lugar da aplicação.
 
 
 Para definir a visibilidade de atributos e métodos, na maioria das linguagens, exitem palavras-chaves que definem o escopo de acesso. São elas:
