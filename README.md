@@ -11,7 +11,7 @@ A seção de Padrões de Projetos apresenta exemplos e explicações adaptadas d
 	- [Atributos](#atributos)
 	- [Construtor](#construtor)
 	- [Métodos](#métodos)
-	- [Visibilidade](#visibilidade)
+	- [Visibilidade](#modificadores-de-acesso)
 	- [Enumeração](#enumeração)
 	- [Composição](#composição)
 	- [Interfaces](#interfaces)
@@ -32,6 +32,8 @@ A seção de Padrões de Projetos apresenta exemplos e explicações adaptadas d
 
 Nesta secção, serão apresentados os conceitos básicos de POO, estes conceitos são fundamentais para o entendimento do restante do tutorial, porém se você já é familiarizado com POO, então pode ir direto para a secção de [Padrões de Projetos](#padrões-de-projetos).
 > **Atenção:** Para este tutorial, foi utilizado a linguagem de programação Java, com o ambiente de desenvolvimento [InteliJ](https://www.jetbrains.com/pt-br/idea/).
+
+[:house:](#sumário)
 
 ### Abstração
 
@@ -60,7 +62,7 @@ E um objeto (boloDeChocolate) gerado a partir da classe (MeuBolo) em Java é:
 
 > **Boa Pratica:** Para melhorar a legibilidade do seu código, é recomendado utilizar nomes intuitivos para suas classes, e também utilizar as letras maiúsculas para destacar o inicio de palavras no nome da classes, por exemplo: ExemploDeClasse.
 
-
+[:house:](#sumário)
 
 ### Atributos
 
@@ -92,9 +94,9 @@ Em Java e muitas outras linguagens de programação chamadas de "**tipadas**", o
 
 
 Há outros tipos, porém ficaremos apenas com estes para não confundir. Outra coisa importante sobre os tipos, é que eles podem ser primitivos ou não-primitivos (ou também chamados de compostos), em Java os tipos primitivos iniciam com a primeira letra minuscula, enquanto os tipos não-primitivos iniciam com letra maiúscula. Os tipos primitivos são os componentes básicos (atômicos) das classes, eles correspondem a um espaço de memória com tamanho fixo destinado para armazenar o valor que é atribuído a ele. Enquanto os tipos não-primitivos são compostos por outros atributos, um exemplo de tipo não-primitivo é o String, que contem próprios atributos (conjunto de caracteres do tipo char (letras)) e  também carrega seus próprios comportamentos (**métodos**) que veremos mais a frente.
-
+[:house:](#sumário)
 ### Construtor
-
+[:house:](#sumário)
 ### Métodos 
 
 Os métodos correspondem ao comportamento da nossa classe. A estrutura básica de um métodos possui um modificador de acesso (veremos isso mais tarde), um tipo de retorno, o nome do método e os parâmetros.
@@ -110,7 +112,7 @@ Um método pode ou não receber um **parâmetro**, um parâmetro é um atributo 
 
 > **Boas práticas**: Como um método remete a um comportamente, é recomendado usar verbos no infinitivo para nomear-los, por exemplo: calcularValor, descreverBolo, copiarTexto e etc.
 
-
+[:house:](#sumário)
 ### Modificadores de acesso
 
 Por motivos de segurança, as vezes é preciso restringir a "visualização" de um método ou atributo de uma classe em relação à outras classes. 
@@ -189,16 +191,16 @@ No código a seguir, note que ao modificar o valor de **nome** na instância **b
 
 Este comportamento é constantemente utilizado em aplicações que utilizam o padrão de projeto singleton (veremos mais a frente), pois garante que um valor seja compartilhado por diversos módulos do mesmo projeto, evitando conflitos ou a necessidade de atualizar diversas instâncias da mesma classe.
 
-
+[:house:](#sumário)
 ### Enumeração
-
+[:house:](#sumário)
 ### Composição
-
+[:house:](#sumário)
 ### Interfaces
 
 ### Herança
 
-
+[:house:](#sumário)
 ## Princípios SOLID
 
 
